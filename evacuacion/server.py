@@ -17,33 +17,33 @@ def simulacion_representacion(agent):
     
         
     if type(agent) is Camino:
-        portrayal["Shape"] = "evacuacion/camino.png"
+        portrayal["Shape"] = "evacuacion/assets/camino.png"
         portrayal["scale"] =0.9
         portrayal["Layer"] = 1
         
     elif type(agent) is Civil:
         
         if agent.estado == "Evacuando" or agent.estado == "Evacuado en PE" or agent.estado == "Evacuado sin PE" :
-            portrayal["Shape"] = "evacuacion/persona.png"
+            portrayal["Shape"] = "evacuacion/assets/persona.png"
             portrayal["scale"] =0.9
             portrayal["Layer"] = 2
         elif agent.estado == "No evacuado":
-            portrayal["Shape"] = "evacuacion/tumba.png"
+            portrayal["Shape"] = "evacuacion/assets/tumba.png"
             portrayal["scale"] =0.9
             portrayal["Layer"] = 2
             
     elif type(agent) is Obstaculo:
-        portrayal["Shape"] = "evacuacion/casa.png"
+        portrayal["Shape"] = "evacuacion/assets/casa.png"
         portrayal["scale"] =0.9
         portrayal["Layer"] = 1
 
     elif type(agent) is Ola:
-        portrayal["Shape"] = "evacuacion/ola.png"
+        portrayal["Shape"] = "evacuacion/assets/ola.png"
         portrayal["scale"] =0.9
         portrayal["Layer"] = 3
     
     elif type(agent) is Guia:
-        portrayal["Shape"] = "evacuacion/guia.png"
+        portrayal["Shape"] = "evacuacion/assets/guia.png"
         portrayal["scale"] =0.9
         portrayal["Layer"] = 2
     
