@@ -15,7 +15,7 @@ class Simulacion(mesa.Model):
     cant_obstaculos = 100
 
     puntos_encuentro = 5
-    turistas = True
+    epoca_vacaciones = True
     verbose = False #print 
     def __init__(
         self,
@@ -25,7 +25,7 @@ class Simulacion(mesa.Model):
         cant_caminos = 200,
         cant_obstaculos = 100,
         puntos_encuentro = 5,
-        turistas = True,
+        epoca_vacaciones = False,
 
         ):
         super().__init__()
@@ -35,7 +35,7 @@ class Simulacion(mesa.Model):
         self.cant_caminos = cant_caminos
         self.cant_obstaculos = cant_obstaculos
         self.puntos_encuentro = puntos_encuentro
-        self.turistas = turistas
+        self.epoca_vacaciones = epoca_vacaciones
 
         self.schedule = RandomActivationByTypeFiltered(self)
         #self.schedule = mesa.time.RandomActivation(self)
@@ -132,7 +132,7 @@ class Simulacion(mesa.Model):
             evacuado = False
             t_evacuado = 0
             conocer = random.randint(1,100)
-            if self.turistas == True:
+            if self.epoca_vacaciones == True:
                 if conocer < 70:
                     conoce = True
                     

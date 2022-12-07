@@ -104,6 +104,5 @@ class Walk(mesa.Agent):
            x = 1
 
            next_move = x,y 
-           print("move: ",next_move)
             
         self.model.grid.move_agent(self, next_move)
