@@ -85,8 +85,6 @@ class Simulacion(mesa.Model):
 
         #Crear guias
         for x in puntos:
-            posg = {x,int(altura_minima)-1}
-            print(x,int(altura_minima)-1)
             guia = Guia(self.next_id(),self,(x,int(altura_minima)-1),self.alto+1,False)
             self.grid.place_agent(guia,(x,int(altura_minima)-1))
             self.schedule.add(guia)

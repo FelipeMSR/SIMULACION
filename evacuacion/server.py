@@ -26,16 +26,16 @@ def simulacion_representacion(agent):
         if agent.estado == "Evacuando" or agent.estado == "Evacuado en PE" or agent.estado == "Evacuado sin PE" :
             portrayal["Shape"] = "evacuacion/persona.png"
             portrayal["scale"] =0.9
-            portrayal["Layer"] = 0
+            portrayal["Layer"] = 2
         elif agent.estado == "No evacuado":
             portrayal["Shape"] = "evacuacion/tumba.png"
             portrayal["scale"] =0.9
-            portrayal["Layer"] = 4
+            portrayal["Layer"] = 2
             
     elif type(agent) is Obstaculo:
         portrayal["Shape"] = "evacuacion/casa.png"
         portrayal["scale"] =0.9
-        portrayal["Layer"] = 2
+        portrayal["Layer"] = 1
 
     elif type(agent) is Ola:
         portrayal["Shape"] = "evacuacion/ola.png"
@@ -45,7 +45,7 @@ def simulacion_representacion(agent):
     elif type(agent) is Guia:
         portrayal["Shape"] = "evacuacion/guia.png"
         portrayal["scale"] =0.9
-        portrayal["Layer"] = 5
+        portrayal["Layer"] = 2
     
     return portrayal
 
