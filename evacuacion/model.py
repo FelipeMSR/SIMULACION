@@ -73,7 +73,7 @@ class Simulacion(mesa.Model):
         
         cantidad_altura = self.cant_caminos/self.puntos_encuentro
         altura_minima = self.alto - cantidad_altura
-
+        puntos_caminos = [[]]
         for x in puntos:
             altura_maxima = self.alto -1
             while altura_maxima >= altura_minima:
@@ -81,6 +81,7 @@ class Simulacion(mesa.Model):
                 camino = Camino(self.next_id(),self,pos)
                 self.grid.place_agent(camino, (x,altura_maxima))
                 self.schedule.add(camino)
+                puntos_caminos.append((x,altura_maxima))
                 altura_maxima = altura_maxima - 1
 
         #Crear guias
@@ -92,13 +93,17 @@ class Simulacion(mesa.Model):
         
         #crear obstaculos
         #X,Y random
-        
-        for i in range(self.cant_obstaculos):
+        i = 0
+        while i < self.cant_obstaculos:
+            
             x = self.random.randrange(self.ancho)
             y = self.random.randrange(self.alto-1)
-            obstaculo = Obstaculo(self.next_id(),self,(x,y))
-            self.grid.place_agent(obstaculo, (x, y))
-            self.schedule.add(obstaculo)    
+            if (x,y) not in puntos_caminos:
+                obstaculo = Obstaculo(self.next_id(),self,(x,y))
+                self.grid.place_agent(obstaculo, (x, y))
+                self.schedule.add(obstaculo) 
+                i+= 1   
+            
 
         #crear olas
         for i in range(self.ancho):
