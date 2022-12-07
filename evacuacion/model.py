@@ -15,7 +15,7 @@ class Simulacion(mesa.Model):
     cant_obstaculos = 100
 
     puntos_encuentro = 5
-
+    turistas = True
     verbose = False #print 
     def __init__(
         self,
@@ -25,6 +25,7 @@ class Simulacion(mesa.Model):
         cant_caminos = 200,
         cant_obstaculos = 100,
         puntos_encuentro = 5,
+        turistas = True,
 
         ):
         super().__init__()
@@ -34,6 +35,7 @@ class Simulacion(mesa.Model):
         self.cant_caminos = cant_caminos
         self.cant_obstaculos = cant_obstaculos
         self.puntos_encuentro = puntos_encuentro
+        self.turistas = turistas
 
         self.schedule = RandomActivationByTypeFiltered(self)
         #self.schedule = mesa.time.RandomActivation(self)
@@ -74,6 +76,7 @@ class Simulacion(mesa.Model):
         cantidad_altura = self.cant_caminos/self.puntos_encuentro
         altura_minima = self.alto - cantidad_altura
         puntos_caminos = [[]]
+
         for x in puntos:
             altura_maxima = self.alto -1
             while altura_maxima >= altura_minima:
@@ -129,12 +132,20 @@ class Simulacion(mesa.Model):
             evacuado = False
             t_evacuado = 0
             conocer = random.randint(1,100)
-            if conocer < 70:
-                conoce = True
-                
-                x = self.random.choice(puntos)
+            if self.turistas == True:
+                if conocer < 70:
+                    conoce = True
+                    
+                    x = self.random.choice(puntos)
+                else:
+                    conoce = False
             else:
-                conoce = False
+                if conocer < 85:
+                    conoce = True
+                    
+                    x = self.random.choice(puntos)
+                else:
+                    conoce = False
             moore = True
             civil = Civil(self.next_id(),(x,y),(x,y),puntos,self,edad,evacuado,t_evacuado,conoce,moore)
             self.grid.place_agent(civil, (x, y))

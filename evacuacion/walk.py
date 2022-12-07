@@ -47,9 +47,11 @@ class Walk(mesa.Agent):
                 #si el camino avanza, el proximo mov es por el camino
                 if flag == 0 and ob.pos[1] > self.pos[1] :
                     #print("EL OBJETIVO ESTA ARRIBA")
+                    next_moves.append(ob.pos)
 
-                    next_move = ob.pos
-                    flag = 1
+            if len(next_moves) > 0:
+                flag = 1
+                next_move = self.random.choice(next_moves)
             if flag == 0:
                 #print("Estoy arriba")
                 next_move = self.pos
